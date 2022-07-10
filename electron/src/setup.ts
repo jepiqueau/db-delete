@@ -85,12 +85,7 @@ export class ElectronCapacitorApp {
 
   // Helper function to load in the app.
   private async loadMainWindow(thisRef: any) {
-     if (electronIsDev) {
-      console.log('running local window');
-      await thisRef.MainWindow.loadURL('http://localhost:4300');
-    } else {
-      await thisRef.loadWebApp(thisRef.MainWindow);
-    }
+    await thisRef.loadWebApp(thisRef.MainWindow);
   }
 
   // Expose the mainWindow ref for use outside of the class.
@@ -229,7 +224,7 @@ export function setupContentSecurityPolicy(customScheme: string): void {
         ...details.responseHeaders,
         'Content-Security-Policy': [
           electronIsDev
-            ?  `script-src 'self' https://localhost https://*.fangstr.net ${customScheme}://* 'unsafe-inline' devtools://* 'unsafe-eval' data:  localhost:* ws://localhost:*`
+            ? `default-src ${customScheme}://* 'unsafe-inline' devtools://* 'unsafe-eval' data:`
             : `default-src ${customScheme}://* 'unsafe-inline' data:`,
         ],
       },
