@@ -4,7 +4,7 @@ Process to install
 ```bash
 git clone https://github.com/jepiqueau/db-delete.git
 cd db_delete
-npm install
+npm install --legacy-peer-deps
 npm audit fix
 cd electron
 npm install
